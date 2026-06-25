@@ -2,7 +2,7 @@
 require_once __DIR__ . '/Database.php';
 
 class RestaurantModel {
-    private PDO $db;
+    private $db;
 
     public function __construct() {
         $this->db = Database::getConnection();
@@ -15,11 +15,11 @@ class RestaurantModel {
     }
 
     // Get a single restaurant by ID
-    public function getById(int $id): array|false {
-        $stmt = $this->db->prepare("SELECT * FROM restaurants WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch();
-    }
+   public function getById($id) {
+    $stmt = $this->db->prepare("SELECT * FROM restaurants WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch();
+}
 
     // Create a new restaurant, returns the new ID
     public function create(string $name, string $address, string $cuisineType): string {
