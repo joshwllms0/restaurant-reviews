@@ -35,9 +35,10 @@ class ReviewController {
         setcookie(
             "reviewer_name",
             $reviewName,
-            time() + (60 * 60 * 24 *30),
+            time() + (60 * 60 * 24 *30), //30 days
             "/"
         );
+
 
         if ($reviewerName === '' || $comment === '' || $rating < 1 || $rating > 5) {
             echo "All fields are required and rating must be between 1 and 5.";
