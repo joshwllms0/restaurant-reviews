@@ -35,6 +35,8 @@ class RestaurantController {
         $cuisineType
     );
 
+    $_SESSION['message'] = "Restaurant added successfully!";
+   
     header("Location: index.php?action=index");
     exit;
 
@@ -74,6 +76,8 @@ class RestaurantController {
         $cuisineType
     );
 
+     $_SESSION['message'] = "Restaurant updated successfully!";
+
     header("Location: index.php?action=index");
     exit;
     }
@@ -81,6 +85,8 @@ class RestaurantController {
     public function delete($id) {
 
     $this->model->delete($id);
+
+    $_SESSION['message'] = "Restaurant deleted successfully!";
 
     header("Location: index.php?action=index");
     exit;

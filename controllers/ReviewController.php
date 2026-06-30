@@ -32,6 +32,13 @@ class ReviewController {
         $rating = $_POST['rating'] ?? '';
         $comment = trim($_POST['comment'] ?? '');
 
+        setcookie(
+            "reviewer_name",
+            $reviewName,
+            time() + (60 * 60 * 24 *30),
+            "/"
+        );
+
         if ($reviewerName === '' || $comment === '' || $rating < 1 || $rating > 5) {
             echo "All fields are required and rating must be between 1 and 5.";
             return;
@@ -43,6 +50,8 @@ class ReviewController {
             $rating,
             $comment
         );
+
+        $_SESSION['message'] = "Review submitted successfully!";
 
         header("Location: index.php?controller=review&action=index&restaurant_id=" . $restaurantId);
         exit;
@@ -76,6 +85,8 @@ class ReviewController {
             $comment
         );
 
+        $_SESSION['message'] = "Review updated successfully!";
+
         header("Location: index.php?controller=review&action=index&restaurant_id=" . $restaurantId);
         exit;
     }
@@ -86,6 +97,8 @@ class ReviewController {
         $restaurantId = $_GET['restaurant_id'];
 
         $this->model->delete($id);
+
+        $_SESSION['message'] = "Review deleted successfully!";
 
         header("Location: index.php?controller=review&action=index&restaurant_id=" . $restaurantId);
         exit;

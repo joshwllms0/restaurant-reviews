@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'controllers/RestaurantController.php';
 require_once 'controllers/ReviewController.php';

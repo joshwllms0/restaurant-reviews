@@ -6,10 +6,10 @@
 <form method="POST" action="?controller=review&action=store&restaurant_id=<?= $restaurant['id'] ?>">
 
     <label>Your Name:</label>
-    <input type="text" name="reviewer_name" required>
+    <input type="text" name="reviewer_name" value="<?= htmlspecialchars($_COOKIE['reviewer_name'] ?? '') ?>" required>
 
     <label>Rating (1-5):</label>
-    <input type="number" name="rating" min="1" max="5" required>
+    <input type="number" name="rating" min="1" max="5" value="<?= htmlspecialchares($_COOKIE['last_rating'] ?? '') ?>" required>
 
     <label>Comment:</label>
     <textarea name="comment" required></textarea>
