@@ -20,10 +20,19 @@ class RestaurantController {
 // store creates new restrurant and saves it to db
     public function store() {
 
+    $name = trim($_POST['name'] ?? '');
+    $address = trim($_POST['address'] ?? '');
+    $cuisineType = trim($_POST['cuisine_type'] ?? '');
+
+    if ($name === '' || $address === '' || $cuisineType === '') {
+        echo "All fields are required.";
+        return;
+    }
+
     $this->model->create(
-        $_POST['name'],
-        $_POST['address'],
-        $_POST['cuisine_type']
+        $name,
+        $address,
+        $cuisineType
     );
 
     header("Location: index.php?action=index");
@@ -38,15 +47,31 @@ class RestaurantController {
 
     include __DIR__ . '/../views/restaurants/edit.php';
     }
+    
+    public function show($id) {
+
+        $restaurant = $this->model->getById($id);
+
+        include __DIR__ . '/../views/restaurants/show.php';
+    }
 
     // update takes the id and updates resurant in db
     public function update($id) {
     
+    $name = trim($_POST['name'] ?? '');
+    $address = trim($_POST['address'] ?? '');
+    $cuisineType = trim($_POST['cuisine_type'] ?? '');
+
+    if ($name === '' || $address === '' || $cuisineType === '') {
+        echo "All fields are required.";
+        return;
+    }
+
     $this->model->update(
         $id,
-        $_POST['name'],
-        $_POST['address'],
-        $_POST['cuisine_type']
+        $name,
+        $address,
+        $cuisineType
     );
 
     header("Location: index.php?action=index");

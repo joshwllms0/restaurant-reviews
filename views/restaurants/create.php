@@ -1,6 +1,5 @@
 <?php include __DIR__ . '/../layouts/header.php'; ?>
 
-
 <h1>Add Restaurant</h1>
 
 <form method="POST" action="index.php?action=store">
